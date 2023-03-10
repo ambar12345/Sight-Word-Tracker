@@ -1,0 +1,100 @@
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+
+body {
+
+}
+
+li {
+  list-style-type: none;;
+}
+
+button:hover {
+  background-color: pink;
+}
+button:active {
+  background-color:red;
+}
+
+
+
+
+/********************
+**********************
+/* LAYOUT
+/*******************************************/
+h1, h4 {
+  text-align: center;
+}
+
+header {
+
+}
+
+nav {
+  display:flex;
+  justify-content: space-evenly;
+}
+
+header nav ul {
+  display:flex;
+  justify-content: space-between;
+  gap:10px;
+  padding:0;
+}
+
+
+h3{
+  text-align: center;
+  display:block;
+}
+
+#wordList {
+  text-align: center;
+  padding:0;
+}
+
+#wordList li {
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+
+.bottomButtons{
+  display:flex;
+  justify-content: center;
+  gap:10px;
+}
+
+.bottomButtons button {
+  background-color: blueviolet;
+}
+
+footer {
+
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
