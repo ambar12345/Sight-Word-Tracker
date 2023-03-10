@@ -15,6 +15,27 @@ let nouns  = document.getElementById('nouns')
 
 //list of words array
 
+class Constructor{
+    constructor(level){
+        this._level = level
+    }
+
+    get level {
+        return this._level
+    }
+
+    set level(chosenLevel) {
+        this._level = chosenLevel
+    }
+}
+
+class Dolch extends Constructor{
+    constructor(level){
+        super(level)
+    }
+}
+
+
  wordList = {
     preK: ['a','and', 'away','big', 'blue', 'can','come','down', 'find', 'for', 'funny', 'go', 'help', 'here', 'I', 'in','is', 'it','jump', 'little', 'look', 'make', 'me', 'my','not', 'one', 'play', 'red', 'run', 'said', 'see','the','three','to','two','up','we','where','yellow','you'],
     kinder: ['all','am' ,'are' ,'at' ,'ate' ,'be','black','brown','but','came','did','do','eat','four','get','good','have','he','into','like','must','new','no','now','on','our','out','please','pretty','ran','ride','saw','say','she','so','soon','that','there','they','this','too','under','want','was','well','went','what','white','who','will','with','yes'],
