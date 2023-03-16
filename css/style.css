@@ -20,7 +20,9 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
-
+.displayOff {
+  display:none;
+}
 
 body {
 
@@ -48,9 +50,6 @@ h1, h4 {
   text-align: center;
 }
 
-header {
-
-}
 
 nav {
   display:flex;
@@ -70,22 +69,34 @@ h3{
   display:block;
 }
 
-#wordList {
-  text-align: center;
-  padding:0;
+h4{
+  margin:0;
 }
 
-#wordList li {
+#wordsHere {
+  text-align: center;
+  padding:0;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height:400px;
+}
+
+#wordsHere li {
   margin-top:10px;
   margin-bottom:10px;
+  font-size:30px;
 }
+
 
 
 .bottomButtons{
-  display:flex;
   justify-content: center;
   gap:10px;
+  display: flex;
 }
+
 
 .bottomButtons button {
   background-color: blueviolet;
