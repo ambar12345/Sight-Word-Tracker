@@ -58,6 +58,20 @@ main {
   margin-top: 2px;
 }
 
+h1 {
+  color:rgb(73, 67, 104);
+}
+
+h4{
+  color:rgb(122, 40, 203)
+}
+
+nav button {
+  background-color: rgb(206, 236, 151)
+}
+body {
+  background-color:rgb(244, 179, 147)
+}
 
 h1, h4 {
   text-align: center;
