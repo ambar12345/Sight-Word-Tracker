@@ -4,6 +4,7 @@
 //format options to display words
 let list = document.getElementById('list')
 let oneByOne = document.getElementById('oneByOne')
+let fiveWords = document.getElementById('fiveWords')
 //level options
 let preK = document.getElementById('preK')
 let kinder = document.getElementById('kinder')
@@ -22,13 +23,15 @@ wordList = {
     nouns:['apple','baby','back','ball','bear','bed','bell','bird','birthday','boat','box','boy','bread','brother','cake','car','cat','chair','chicken','children','Christmas','coat','corn','cow','day','dog','doll','door','duck','egg','eye','farm','farmer','father','feet','fire','fish','floor','flower','game','garden','girl','goodbye','grass','ground','hand','head','hill','home','horse','house','kitty','leg','letter','man','men','milk','money','morning','mother','name','nest','night','paper','party','picture','pig','rabbit','rain','ring','robin','Santa Claus','school','seed','sheep','shoe','sister','snow','song','squirrel','stick','street','sun','table','thing','time','top','toy','tree','watch','water','way','wind','window','wood']
 }
 let levelsArr = [preK,kinder,firstGr,secondGr,thirdGr,nouns]
-let formatArr = [list,oneByOne]
+let formatArr = [list,oneByOne,fiveWords]
 
 
 class whichList {
-    constructor(level,format){
+    constructor(level,format, direction){
         this._level = level
         this._format = format
+        this._num = 0
+        this._direction = direction
     }
 
     get level() {
@@ -39,6 +42,14 @@ class whichList {
         return this._format
     }
 
+    get num() {
+        return this._num
+    }
+
+    get direction(){
+        return this._direction
+    }
+
   set level(chosenLevel){
       this._level=chosenLevel
   }
@@ -47,68 +58,107 @@ class whichList {
      this._format = chosenDisplay
   }
 
-//function that shows words once level is chosen, if statement shows in list, else goes to single word function
-goWords() {
-    document.getElementById('wordsHere').innerText =''
-        if (this._format == 'list' || this._format == undefined){
-        wordList[this._level].forEach ( obj => {
-            const li = document.createElement('li')
-            li.textContent = obj
-            document.getElementById('wordsHere').appendChild(li)
-            document.getElementById('next').classList.add('displayOff')
-            document.getElementById('back').classList.add('displayOff')
-          })}
-          else if (this._format =='oneByOne'){
-              console.log("uno por uno")
-            this.singleWords(num)
-          }
-        }
+  set num(newNum){
+      this._num = newNum
+  }
 
-//function for showing one word at a time
-    singleWords(num){
-        document.getElementById('wordsHere').innerText =''
-        document.getElementById('next').classList.remove('displayOff')
-        if (num>0){
-            document.getElementById('back').classList.remove('displayOff')
-        }
-        const li = document.createElement('li')
-        li.textContent = wordList[this._level][num]
-        document.getElementById('wordsHere').appendChild(li)
-        
-    }
-  
-
+set direction(dir){
+    this._direction = dir
 }
+
+displayList(){
+    wordList[this._level].forEach ( obj => {
+        const li = document.createElement('li')
+        li.textContent = obj
+        document.getElementById('wordsHere').appendChild(li)
+        document.getElementById('next').classList.add('displayOff')
+        document.getElementById('back').classList.add('displayOff')
+      })}
+
+
+displaySingleWords(){
+    console.log('displaySingleWords running')
+    document.querySelector('h3').innerText = wordList[this._level][this._num]
+    }
+
+displayFiveWords(){
+    console.log('fiveWords should run')
+    document.getElementById('next').classList.remove('displayOff')
+    for (let i=0;i<5;i++){
+        const li = document.createElement('li')
+        li.textContent = wordList[this._level][this._num]
+        document.getElementById('wordsHere').appendChild(li)
+        this._num++
+    }}
+
+backOrNext(){
+    console.log('backOrNext running')
+    if (this._format == "oneByOne"){
+        (console.log('format is OneByOne'))
+    this._direction == 'right'? this._num++ : this._num--
+}
+    else {
+        console.log('format is displayFive')
+        this._direction == 'right'? this._num+=0 : this._num= this._num - 10
+    }
+    console.log(`Number is ${this._num}`)
+    console.log('go to goWords')
+    this.goWords()
+}
+
+goWords() {
+    console.log('goWords running')
+    document.getElementById('wordsHere').innerText =''
+    document.querySelector('h3').innerText =''
+if (this._format == 'list' || this._format == undefined){
+    this.displayList();}
+else {
+    document.getElementById('next').classList.remove('displayOff')
+    if (this._num>0){
+        document.getElementById('back').classList.remove('displayOff')
+    }
+    else{
+        document.getElementById('back').classList.add('displayOff')}
+
+    if (this._format == 'oneByOne'){
+    this.displaySingleWords()
+    }
+    else if (this._format == 'fiveWords'){
+    this.displayFiveWords()
+}
+}
+}
+}
+
+
 
 let choice = new whichList()   
 
 changeLevelYo = (event) => {
-choice.level=event.target.id
-console.log(choice.level)
-console.log(choice.format)
-choice.goWords()
-}
+    choice.level=event.target.id
+    choice.num = 0;
+    choice.goWords()
+    }
 
 changeFormatYo = (event) => {
-choice.format = event.target.id
-console.log(choice.format)
-console.log('changeFormatYo running')
-choice.goWords()
-}
+    choice.format = event.target.id
+    choice.num = 0;
+    choice.goWords()
+    }
 
-let num=0;
-nextWord = () => {
-    num++
-    choice.singleWords(num)
-    console.log('next')
-} 
 
-prevWord = () => {
-    num--
-    choice.singleWords(num)
-    console.log('back')
-}
+    //function for showing next word
 
+function nextWord(){
+    choice.direction = 'right'
+    choice.backOrNext()
+    } 
+
+//function for showing previous word
+function prevWord(){
+        choice.direction = 'left'
+        choice.backOrNext()
+    }
 
 
 //event listeners for all levels
