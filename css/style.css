@@ -20,8 +20,16 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
+ul {
+  margin:0;
+}
+
 .displayOff {
   display:none;
+}
+
+.displayOne {
+  font-size: 50px;
 }
 
 body {
@@ -46,6 +54,11 @@ button:active {
 **********************
 /* LAYOUT
 /*******************************************/
+main {
+  margin-top: 2px;
+}
+
+
 h1, h4 {
   text-align: center;
 }
@@ -67,11 +80,15 @@ header nav ul {
 h3{
   text-align: center;
   display:block;
+  font-size: 50px;
+  margin:5px;
 }
 
 h4{
   margin:0;
 }
+
+
 
 #wordsHere {
   text-align: center;
@@ -79,9 +96,15 @@ h4{
   display:flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-between;
-  height:400px;
+  justify-content: space-around;
+  gap:40px; 
+  max-width:95%;
+  max-height: 550px;
+  overflow-y: scroll;
+  overflow-x:scroll;
+  margin:0 auto;
 }
+
 
 #wordsHere li {
   margin-top:10px;
@@ -105,6 +128,7 @@ h4{
 footer {
 
 }
+
 
 /******************************************
 /* ADDITIONAL STYLES
