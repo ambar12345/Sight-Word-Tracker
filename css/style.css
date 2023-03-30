@@ -70,7 +70,7 @@ nav button {
   background-color: rgb(206, 236, 151)
 }
 body {
-  background-color:rgb(244, 179, 147)
+  background-color:white;
 }
 
 h1, h4 {
@@ -118,6 +118,12 @@ h4{
   overflow-x:scroll;
   margin:0 auto;
 }
+
+h3, #wordsHere {
+  background-color: white;
+  border:1px solid rgb(73, 67, 104);
+}
+
 
 
 #wordsHere li {
